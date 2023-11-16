@@ -1,0 +1,62 @@
+<div id="<%= dom_id gallery %>">
+  <p>
+    <strong>Name:</strong>
+    <%= gallery.name %>
+  </p>
+  <p>
+    <strong>Orginal url:</strong>
+    <%= gallery.image_url %>
+  </p>
+
+  <div id="galleries" class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+      <div class="lg:flex">
+          <%= image_tag gallery.image.derivation_url(:thumbnail, 200, 200, expires_in: 900) %>
+
+          <div class="flex flex-col justify-between py-6 lg:mx-6">
+            <h2 class="text-sm text-gray-500">Expiry derivation url:</h2>
+            <%= gallery.image.derivation_url(:thumbnail, 200, 200, expires_in: 900) %>
+
+            <span class="text-sm text-gray-500 dark:text-gray-300">On: <%= link_to gallery.created_at.to_fs(:long) %></span>
+          </div>
+      </div>
+  </div>
+
+  <div id="galleries" class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+      <div class="lg:flex">
+          <%= image_tag gallery.image.derivation_url(:thumbnail, 200, 200, expires_in: 900) %>
+
+          <div class="flex flex-col justify-between py-6 lg:mx-6">
+            <h2 class="text-sm text-gray-500">Normal derivation url:</h2>
+            <%= gallery.image.derivation_url(:thumbnail, 200, 200) %>
+
+            <span class="text-sm text-gray-500 dark:text-gray-300">On: <%= link_to gallery.created_at.to_fs(:long) %></span>
+          </div>
+      </div>
+  </div>
+
+  <div id="galleries" class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+      <div class="lg:flex">
+          <%= image_tag image_derivation_url("private", "gallery", "image", gallery.id, "thumbnail") %>
+
+          <div class="flex flex-col justify-between py-6 lg:mx-6">
+            <h2 class="text-sm text-gray-500">Proxy public url:</h2>
+            <%= image_derivation_url("public", "gallery", "image", gallery.id, "thumbnail") %>
+
+            <span class="text-sm text-gray-500 dark:text-gray-300">On: <%= link_to gallery.created_at.to_fs(:long) %></span>
+          </div>
+      </div>
+  </div>
+
+  <div id="galleries" class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+      <div class="lg:flex">
+          <%= image_tag image_derivation_url("private", "gallery", "image", gallery.id, "thumbnail") %>
+
+          <div class="flex flex-col justify-between py-6 lg:mx-6">
+            <h2 class="text-sm text-gray-500">Proxy private url:</h2>
+            <%= image_derivation_url("private", "gallery", "image", gallery.id, "thumbnail") %>
+
+            <span class="text-sm text-gray-500 dark:text-gray-300">On: <%= link_to gallery.created_at.to_fs(:long) %></span>
+          </div>
+      </div>
+  </div>
+</div>

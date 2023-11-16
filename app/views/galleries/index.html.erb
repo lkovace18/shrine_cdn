@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl mb-4">
+  Galleries
+</h1>
+
+<%= link_to "New gallery", new_gallery_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+
+<div id="galleries" class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+  <% @galleries.each do |gallery| %>
+    <div class="lg:flex">
+        <%= image_tag gallery.image.derivation_url(:thumbnail, 256, 224, expires_in: 900), class: "w-full h-56 rounded-lg lg:w-64" %>
+
+        <div class="flex flex-col justify-between py-6 lg:mx-6">
+          <h2 class="text-sm text-gray-500 dark:text-gray-300"><%= gallery.name %></h2>
+          <span class="text-sm text-gray-500 dark:text-gray-300">On: <%= link_to gallery.created_at.to_fs(:long) %></span>
+
+          <%= link_to "Show this gallery", gallery, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        </div>
+    </div>
+  <% end %>
+</div>
+
+
